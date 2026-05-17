@@ -20,7 +20,7 @@ Each service runs inside its own Docker container and communicates through Docke
 
 # Architecture
 
-![Architecture Diagram](images/architecture-diagram.png)
+  -<img width="1536" height="1024" alt="microservice docker" src="https://github.com/user-attachments/assets/0f784879-a127-4d86-a109-4364f617edef" />
 
 ```text
                     +-------------------+
@@ -51,7 +51,6 @@ Each service runs inside its own Docker container and communicates through Docke
 - Express.js
 - Docker
 - Docker Compose
-- REST API
 - Microservices Architecture
 
 ---
@@ -67,22 +66,18 @@ Microservices-Task/
 ├── user-service/
 │   ├── Dockerfile
 │   ├── package.json
-│   └── src/
 │
 ├── product-service/
 │   ├── Dockerfile
 │   ├── package.json
-│   └── src/
 │
 ├── order-service/
 │   ├── Dockerfile
 │   ├── package.json
-│   └── src/
 │
 ├── gateway-service/
 │   ├── Dockerfile
 │   ├── package.json
-│   └── src/
 │
 └── images/
     ├── architecture-diagram.png
@@ -130,7 +125,7 @@ docker compose version
 # Step 1 — Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/mohanDevOps-arch/Microservices-Task.git
 ```
 
 Move into project directory:
@@ -146,7 +141,7 @@ cd Microservices-Task
 ```bash
 ls
 ```
-
+*****************************
 Expected:
 
 ```text
@@ -157,7 +152,7 @@ order-service
 gateway-service
 README.md
 ```
-
+*****************************
 ---
 
 # Step 3 — Build Docker Images
@@ -210,8 +205,7 @@ Expected running containers:
 
 # Docker Containers Screenshot
 
-![Docker Running](images/docker-running.png)
-
+  -<img width="1918" height="1030" alt="compose build" src="https://github.com/user-attachments/assets/099afb52-03c3-44c1-981f-cce8c3908724" />
 ---
 
 # API Testing
@@ -233,6 +227,7 @@ http://localhost:3000
 ```bash
 curl http://localhost:3000/users
 ```
+ -<img width="1860" height="402" alt="user" src="https://github.com/user-attachments/assets/f2c8771e-7ca8-421b-9d5d-8876d8c59914" />
 
 Browser:
 
@@ -244,7 +239,7 @@ http://localhost:3000/users
 
 # User Service Screenshot
 
-![User Service](images/user-service.png)
+ -<img width="1860" height="402" alt="user" src="https://github.com/user-attachments/assets/f2c8771e-7ca8-421b-9d5d-8876d8c59914" />
 
 ---
 
@@ -274,7 +269,7 @@ http://localhost:3001/products
 
 # Product Service Screenshot
 
-![Product Service](images/product-service.png)
+  -<img width="1837" height="367" alt="prod" src="https://github.com/user-attachments/assets/902b524a-87cb-4052-9a9a-50ef97518809" />
 
 ---
 
@@ -304,7 +299,7 @@ http://localhost:3002/orders
 
 # Order Service Screenshot
 
-![Order Service](images/order-service.png)
+  -<img width="1851" height="241" alt="orders" src="https://github.com/user-attachments/assets/cdfba925-ed1a-497d-9186-a7954fe2f969" />
 
 ---
 
@@ -340,36 +335,52 @@ curl http://localhost:3003/api/orders
 
 # Gateway Service Screenshot
 
-![Gateway Service](images/gateway-service.png)
+  -<img width="1860" height="156" alt="3003" src="https://github.com/user-attachments/assets/ee773889-6f3f-4ebc-bbf3-f02d615dc0fd" />
 
 ---
 
 # Docker Compose Configuration
 
 ```yaml
-version: "3.9"
+version: "3.8"
 
 services:
-
   user-service:
-    build: ./user-service
+    build: ./Microservices/user-service
     ports:
       - "3000:3000"
+    networks:
+      - microservice-network
 
   product-service:
-    build: ./product-service
+    build: ./Microservices/product-service
     ports:
       - "3001:3001"
+    networks:
+      - microservice-network
 
   order-service:
-    build: ./order-service
+    build: ./Microservices/order-service
     ports:
       - "3002:3002"
+    networks:
+      - microservice-network
 
   gateway-service:
-    build: ./gateway-service
+    build: ./Microservices/gateway-service
     ports:
       - "3003:3003"
+    depends_on:
+      - user-service
+      - product-service
+      - order-service
+    networks:
+      - microservice-network
+
+networks:
+  microservice-network:
+    driver: bridge
+
 ```
 
 ---
@@ -380,14 +391,6 @@ services:
 
 ```bash
 docker ps
-```
-
----
-
-## View Container Logs
-
-```bash
-docker logs <container-id>
 ```
 
 ---
@@ -413,6 +416,13 @@ docker compose down
 ```bash
 docker compose up -d --build
 ```
+
+<img width="1917" height="1035" alt="comp build png 3" src="https://github.com/user-attachments/assets/8f4086c3-d937-40bf-bd5a-7b177183cbae" />
+<img width="1918" height="931" alt="comp build png 2" src="https://github.com/user-attachments/assets/292275ce-7d65-471b-a328-f9395f6f63e3" />
+<img width="1916" height="501" alt="comp build" src="https://github.com/user-attachments/assets/6edf3930-955b-45d8-af1e-065444f301b2" />
+<img width="1918" height="1030" alt="compose build" src="https://github.com/user-attachments/assets/a09cef40-8eb3-424d-af13-8e7aabfd14e0" />
+<img width="1918" height="1032" alt="done" src="https://github.com/user-attachments/assets/c799b9a0-0dbe-47df-801f-b726024f1dc5" />
+<img width="1918" height="442" alt="container run" src="https://github.com/user-attachments/assets/5b095151-1ec2-4d26-81ff-b024cc7baf54" />
 
 ---
 
@@ -485,79 +495,8 @@ docker system prune -a
 
 ---
 
-# Future Improvements
-
-- Kubernetes Deployment
-- CI/CD Pipeline Integration
-- Monitoring with Prometheus & Grafana
-- Centralized Logging
-- API Authentication
-- Load Balancing
-
----
-
 # Author
 
-Santosh Kumar Sharma
+Santosh Kumar Sharma -(DevOps, Batch-15)
 
-## Services and Endpoints
-
-### **User Service**
-- **Base URL:** `http://localhost:3000`
-- **Endpoints:**
-  - **List Users:**  
-    ```
-    curl http://localhost:3000/users
-    ```
-    Or open in your browser: [http://localhost:3000/users](http://localhost:3000/users)
-
----
-
-### **Product Service**
-- **Base URL:** `http://localhost:3001`
-- **Endpoints:**
-  - **List Products:**  
-    ```
-    curl http://localhost:3001/products
-    ```
-    Or open in your browser: [http://localhost:3001/products](http://localhost:3001/products)
-
----
-
-### **Order Service**
-- **Base URL:** `http://localhost:3002`
-- **Endpoints:**
-  - **List Orders:**  
-    ```
-    curl http://localhost:3002/orders
-    ```
-    Or open in your browser: [http://localhost:3002/orders](http://localhost:3002/orders)
-
----
-
-### **Gateway Service**
-- **Base URL:** `http://localhost:3003/api`
-- **Endpoints:**
-  - **Users:**  
-    ```
-    curl http://localhost:3003/api/users
-    ```
-  - **Products:**  
-    ```
-    curl http://localhost:3003/api/products
-    ```
-  - **Orders:**  
-    ```
-    curl http://localhost:3003/api/orders
-    ```
-
----
-
-## Instructions
-1. Start all services using the `docker-compose` file:
-   ```
-   docker-compose up
-   ```
-2. Once the services are running, use the above endpoints to verify the functionality.
-
-Happy testing!
+<img width="1918" height="442" alt="container run" src="https://github.com/user-attachments/assets/ebf90e9c-e4b8-4092-a319-b74626f86545" />
