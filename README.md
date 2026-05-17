@@ -204,9 +204,8 @@ Expected running containers:
 
 # Docker Containers Screenshot
 
-  -<img width="1918" height="1030" alt="compose build" src="https://github.com/user-attachments/assets/099afb52-03c3-44c1-981f-cce8c3908724" />
----
-
+ ---
+ -<img width="1918" height="1030" alt="compose build" src="https://github.com/user-attachments/assets/099afb52-03c3-44c1-981f-cce8c3908724" />
 # API Testing
 
 ---
@@ -498,4 +497,3 @@ docker system prune -a
 
 Santosh Kumar Sharma -(DevOps, Batch-15)
 
-<img width="1918" height="442" alt="container run" src="https://github.com/user-attachments/assets/ebf90e9c-e4b8-4092-a319-b74626f86545" />
