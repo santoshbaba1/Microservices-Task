@@ -3,10 +3,7 @@
 ## Overview
 This document provides details on testing various services after running the `docker-compose` file. These services include User, Product, Order, and Gateway Services. Each service has its own endpoints for testing purposes.
 
----
-# Microservices Task
-
-## Project Overview
+## Microservices Task Project Overview
 
 This project demonstrates a Microservices Architecture using Docker and Docker Compose.
 
