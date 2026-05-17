@@ -15,12 +15,11 @@ The application consists of the following independent services:
 - Gateway Service
 
 Each service runs inside its own Docker container and communicates through Docker networking.
+  -<img width="1536" height="1024" alt="microservice docker" src="https://github.com/user-attachments/assets/0f784879-a127-4d86-a109-4364f617edef" />
 
 ---
 
 # Architecture
-
-  -<img width="1536" height="1024" alt="microservice docker" src="https://github.com/user-attachments/assets/0f784879-a127-4d86-a109-4364f617edef" />
 
 ```text
                     +-------------------+
